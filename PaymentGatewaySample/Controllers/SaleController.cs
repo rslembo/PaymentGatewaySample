@@ -10,16 +10,19 @@ namespace PaymentGatewaySample.Controllers
     public class SaleController : ControllerBase
     {
         public ISaleService SaleService { get; }
+        public ITransactionFinder TransactionFinder { get; }
 
-        public SaleController(ISaleService saleService)
+        public SaleController(ISaleService saleService, ITransactionFinder transactionFinder)
         {
             SaleService = saleService;
+            TransactionFinder = transactionFinder;
         }
 
         [HttpGet("{id}")]
         public IActionResult Get(Guid id)
         {
-            return Ok("Teste");
+            var transaction = TransactionFinder.FindById(id);
+            return Ok("Transaction");
         }
 
         [HttpPost]

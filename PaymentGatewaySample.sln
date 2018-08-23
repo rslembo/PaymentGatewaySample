@@ -3,13 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2047
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentGatewaySample", "PaymentGatewaySample\PaymentGatewaySample.csproj", "{36919B93-3DA0-486D-A2E5-89633B6C1A9F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaymentGatewaySample", "PaymentGatewaySample\PaymentGatewaySample.csproj", "{36919B93-3DA0-486D-A2E5-89633B6C1A9F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentGatewaySample.Domain", "PaymentGatewaySample.Domain\PaymentGatewaySample.Domain.csproj", "{AA7AB578-28BF-4485-9492-294AB5815529}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaymentGatewaySample.Domain", "PaymentGatewaySample.Domain\PaymentGatewaySample.Domain.csproj", "{AA7AB578-28BF-4485-9492-294AB5815529}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentGatewaySample.Repositories", "PaymentGatewaySample.Repository\PaymentGatewaySample.Repositories.csproj", "{DCB1AFDC-1E22-4717-B827-26CF27D3A4BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaymentGatewaySample.Repositories", "PaymentGatewaySample.Repository\PaymentGatewaySample.Repositories.csproj", "{DCB1AFDC-1E22-4717-B827-26CF27D3A4BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentGatewaySample.Services", "PaymentGatewaySample.Services\PaymentGatewaySample.Services.csproj", "{E248EC67-BDA0-4F3D-AD66-13C36875D843}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaymentGatewaySample.Services", "PaymentGatewaySample.Services\PaymentGatewaySample.Services.csproj", "{E248EC67-BDA0-4F3D-AD66-13C36875D843}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentGatewaySample.Integrations.ClearSale", "PaymentGatewaySample.Integrations.ClearSale\PaymentGatewaySample.Integrations.ClearSale.csproj", "{52262C60-CBDA-4B6D-8741-D31770C7ADAA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentGatewaySample.Integrations.Cielo", "PaymentGatewaySample.Integrations.Cielo\PaymentGatewaySample.Integrations.Cielo.csproj", "{8DA6FD09-610F-41BC-999D-52CDEB0AF547}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentGatewaySample.Integrations.Stone", "PaymentGatewaySample.Integrations.Stone\PaymentGatewaySample.Integrations.Stone.csproj", "{4B568554-04D9-4359-91F8-60FC0D2E6FD0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{20E33EAA-8430-4B61-BE0B-F5E379A47EF4}"
+	ProjectSection(SolutionItems) = preProject
+		scripts_create.sql = scripts_create.sql
+		scripts_insert.sql = scripts_insert.sql
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +45,18 @@ Global
 		{E248EC67-BDA0-4F3D-AD66-13C36875D843}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E248EC67-BDA0-4F3D-AD66-13C36875D843}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E248EC67-BDA0-4F3D-AD66-13C36875D843}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52262C60-CBDA-4B6D-8741-D31770C7ADAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52262C60-CBDA-4B6D-8741-D31770C7ADAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52262C60-CBDA-4B6D-8741-D31770C7ADAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52262C60-CBDA-4B6D-8741-D31770C7ADAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DA6FD09-610F-41BC-999D-52CDEB0AF547}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DA6FD09-610F-41BC-999D-52CDEB0AF547}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DA6FD09-610F-41BC-999D-52CDEB0AF547}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DA6FD09-610F-41BC-999D-52CDEB0AF547}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B568554-04D9-4359-91F8-60FC0D2E6FD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B568554-04D9-4359-91F8-60FC0D2E6FD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B568554-04D9-4359-91F8-60FC0D2E6FD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B568554-04D9-4359-91F8-60FC0D2E6FD0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

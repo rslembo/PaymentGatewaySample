@@ -6,8 +6,10 @@ namespace PaymentGatewaySample.Domain.Entities
     public class Merchant
     {
         public Guid Id { get; set; }
+        public string Key { get; set; }
         public string BillingName { get; set; }
-        public bool AntifraudEnabled { get; set; }
-        public IEnumerable<MerchantPaymentConfiguration> PaymentConfiguration { get; set; }
+        public IEnumerable<MerchantPaymentConfiguration> PaymentConfigurations { get; set; }
+        public MerchantAntifraudConfiguration AntifraudConfiguration { get; set; }
+        public DateTime CreatedDate { get; set; }
     }
 }

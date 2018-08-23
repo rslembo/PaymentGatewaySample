@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using PaymentGatewaySample.Domain.Repositories;
 using PaymentGatewaySample.Domain.Services;
+using PaymentGatewaySample.Repositories.Implementation;
 using PaymentGatewaySample.Services.Implementation;
 
 namespace PaymentGatewaySample
@@ -22,6 +24,9 @@ namespace PaymentGatewaySample
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddScoped<ISaleService, SaleService>();
+            services.AddScoped<ITransactionFinder, TransactionFinder>();
+
+            services.AddScoped<IMerchantRepository, MerchantRepositoryMock>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
