@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using PaymentGatewaySample.Domain.Contracts;
 using PaymentGatewaySample.Domain.Services;
@@ -26,9 +27,9 @@ namespace PaymentGatewaySample.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] SaleRequest request)
+        public async Task<IActionResult> Post([FromBody] SaleRequest request)
         {
-            SaleService.Process();
+            await SaleService.Process();
             return Ok();
         }
     }

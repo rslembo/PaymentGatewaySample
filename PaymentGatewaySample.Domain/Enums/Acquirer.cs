@@ -1,6 +1,6 @@
 ﻿namespace PaymentGatewaySample.Domain.Enums
 {
-    public enum Acquirer : byte
+    public enum Acquirer
     {
         Undefined,
         Cielo,

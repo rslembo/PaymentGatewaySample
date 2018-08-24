@@ -1,6 +1,6 @@
 ﻿namespace PaymentGatewaySample.Domain.Enums
 {
-    public enum PaymentType : byte
+    public enum PaymentType
     {
         Undefined,
         CreditCard

@@ -26,7 +26,7 @@ namespace PaymentGatewaySample.Repositories.Implementation
                             new MerchantPaymentConfiguration
                             {
                                 Id = Guid.NewGuid(),
-                                MerchantId = new Guid("408E5197-D468-45A9-B0B2-B0B513481D3A"),
+                                Merchant = new Merchant{ Id = new Guid("408E5197-D468-45A9-B0B2-B0B513481D3A") },
                                 Brand = CardBrand.Master,
                                 Acquirer = Acquirer.Cielo,
                                 CreatedDate = DateTime.Now
@@ -34,7 +34,7 @@ namespace PaymentGatewaySample.Repositories.Implementation
                             new MerchantPaymentConfiguration
                             {
                                 Id = Guid.NewGuid(),
-                                MerchantId = new Guid("408E5197-D468-45A9-B0B2-B0B513481D3A"),
+                                Merchant = new Merchant{ Id = new Guid("408E5197-D468-45A9-B0B2-B0B513481D3A") },
                                 Brand = CardBrand.Visa,
                                 Acquirer = Acquirer.Stone,
                                 CreatedDate = DateTime.Now
@@ -43,7 +43,7 @@ namespace PaymentGatewaySample.Repositories.Implementation
                         AntifraudConfiguration = new MerchantAntifraudConfiguration
                         {
                             Id = Guid.NewGuid(),
-                            MerchantId = new Guid("408E5197-D468-45A9-B0B2-B0B513481D3A"),
+                            Merchant = new Merchant{ Id = new Guid("408E5197-D468-45A9-B0B2-B0B513481D3A") },
                             Provider = AntifraudProvider.ClearSale,
                             IsEnabled = true,
                             ClientId = "0e5639c2742263323d4274b35b5bf305b8816df4",
@@ -62,14 +62,14 @@ namespace PaymentGatewaySample.Repositories.Implementation
                             new MerchantPaymentConfiguration
                             {
                                 Id = Guid.NewGuid(),
-                                MerchantId = new Guid("881443DF-B87D-496F-A79A-A7D43A580BEE"),
+                                Merchant = new Merchant{ Id = new Guid("881443DF-B87D-496F-A79A-A7D43A580BEE") },
                                 Brand = CardBrand.Master,
                                 Acquirer = Acquirer.Stone
                             },
                             new MerchantPaymentConfiguration
                             {
                                 Id = Guid.NewGuid(),
-                                MerchantId = new Guid("881443DF-B87D-496F-A79A-A7D43A580BEE"),
+                                Merchant = new Merchant{ Id = new Guid("881443DF-B87D-496F-A79A-A7D43A580BEE") },
                                 Brand = CardBrand.Visa,
                                 Acquirer = Acquirer.Cielo
                             }

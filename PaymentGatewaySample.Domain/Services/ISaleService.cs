@@ -1,7 +1,9 @@
-﻿namespace PaymentGatewaySample.Domain.Services
+﻿using System.Threading.Tasks;
+
+namespace PaymentGatewaySample.Domain.Services
 {
     public interface ISaleService
     {
-        void Process();
+        Task Process();
     }
 }

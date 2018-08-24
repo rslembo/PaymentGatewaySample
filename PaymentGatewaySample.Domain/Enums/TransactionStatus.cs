@@ -1,6 +1,6 @@
 ﻿namespace PaymentGatewaySample.Domain.Enums
 {
-    public enum TransactionStatus : byte
+    public enum TransactionStatus
     {
         Undefined,
         Accepted,

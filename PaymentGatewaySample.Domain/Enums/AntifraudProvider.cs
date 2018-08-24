@@ -1,6 +1,6 @@
 ﻿namespace PaymentGatewaySample.Domain.Enums
 {
-    public enum AntifraudProvider : byte
+    public enum AntifraudProvider
     {
         Undefined,
         ClearSale

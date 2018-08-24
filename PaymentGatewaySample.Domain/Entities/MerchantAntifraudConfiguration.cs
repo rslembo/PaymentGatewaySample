@@ -6,7 +6,7 @@ namespace PaymentGatewaySample.Domain.Entities
     public class MerchantAntifraudConfiguration
     {
         public Guid Id { get; set; }
-        public Guid MerchantId { get; set; }
+        public virtual Merchant Merchant { get; set; }
         public AntifraudProvider Provider { get; set; }
         public bool IsEnabled { get; set; }
         public string ClientId { get; set; }

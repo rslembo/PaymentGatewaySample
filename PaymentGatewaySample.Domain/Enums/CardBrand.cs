@@ -1,6 +1,6 @@
 ﻿namespace PaymentGatewaySample.Domain.Enums
 {
-    public enum CardBrand : byte
+    public enum CardBrand
     {
         Undefined,
         Master,

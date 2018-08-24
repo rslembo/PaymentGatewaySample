@@ -17,9 +17,9 @@ CREATE TABLE [Acquirer] (
 
 CREATE TABLE [MerchantPaymentConfiguration] (
 	[Id] [UNIQUEIDENTIFIER] DEFAULT NEWID() PRIMARY KEY,
-	[MerchantId] [UNIQUEIDENTIFIER] FOREIGN KEY REFERENCES [Merchant](Id),
-	[Brand] [int] FOREIGN KEY REFERENCES [Brand](Id),
-	[Acquirer] [int] FOREIGN KEY REFERENCES [Acquirer](Id),
+	[MerchantId] [UNIQUEIDENTIFIER] NOT NULL FOREIGN KEY REFERENCES [Merchant](Id),
+	[Brand] [int] NOT NULL FOREIGN KEY REFERENCES [Brand](Id),
+	[Acquirer] [int] NOT NULL FOREIGN KEY REFERENCES [Acquirer](Id),
 	[CreatedDate] [datetime] NOT NULL DEFAULT GETDATE()
 );
 
@@ -30,8 +30,8 @@ CREATE TABLE [AntifraudProvider] (
 
 CREATE TABLE [MerchantAntifraudConfiguration] (
 	[Id] [UNIQUEIDENTIFIER] DEFAULT NEWID() PRIMARY KEY,
-	[MerchantId] [UNIQUEIDENTIFIER] FOREIGN KEY REFERENCES [Merchant](Id),
-	[AntifraudProvider] [int] FOREIGN KEY REFERENCES [AntifraudProvider](Id),
+	[MerchantId] [UNIQUEIDENTIFIER] NOT NULL FOREIGN KEY REFERENCES [Merchant](Id),
+	[AntifraudProvider] [int] NOT NULL FOREIGN KEY REFERENCES [AntifraudProvider](Id),
 	[IsEnabled] [bit] NOT NULL DEFAULT 0,
 	[ClientId] [varchar](255) NOT NULL,
 	[ClientSecret] [varchar](255) NOT NULL,
