@@ -1,9 +1,10 @@
-﻿using System.Threading.Tasks;
+﻿using PaymentGatewaySample.Domain.Contracts;
+using System.Threading.Tasks;
 
 namespace PaymentGatewaySample.Domain.Services
 {
     public interface ISaleService
     {
-        Task Process();
+        Task Process(SaleRequest request);
     }
 }

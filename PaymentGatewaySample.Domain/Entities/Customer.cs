@@ -10,8 +10,8 @@ namespace PaymentGatewaySample.Domain.Entities
         public string IdentityType { get; set; }
         public string Email { get; set; }
         public DateTime? BirthDate { get; set; }
-        public virtual Address ShippingAddress { get; set; }
-        public virtual Address BillingAddress { get; set; }
+        public virtual ShippingAddress ShippingAddress { get; set; }
+        public virtual BillingAddress BillingAddress { get; set; }
         public virtual Transaction Transaction { get; set; }
     }
 }

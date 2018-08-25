@@ -32,6 +32,7 @@ namespace PaymentGatewaySample
             services.AddScoped<ITransactionFinder, TransactionFinder>();
 
             services.AddScoped<IMerchantRepository, MerchantRepository>();
+            services.AddScoped<ITransactionRepository, TransactionRepository>();
             //services.AddScoped<IMerchantRepository, MerchantRepositoryMock>();
         }
 

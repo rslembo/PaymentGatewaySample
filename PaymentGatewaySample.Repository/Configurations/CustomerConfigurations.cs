@@ -15,7 +15,12 @@ namespace PaymentGatewaySample.Repositories.Configurations
             builder
                 .HasOne(x => x.ShippingAddress)
                 .WithOne(x => x.Customer)
-                .HasForeignKey<Address>("CustomerId");
+                .HasForeignKey<ShippingAddress>("CustomerId");
+
+            builder
+                .HasOne(x => x.BillingAddress)
+                .WithOne(x => x.Customer)
+                .HasForeignKey<BillingAddress>("CustomerId");
         }
     }
 }

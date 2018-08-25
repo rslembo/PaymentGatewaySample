@@ -1,5 +1,5 @@
-﻿using System;
-using System.Transactions;
+﻿using PaymentGatewaySample.Domain.Enums;
+using System;
 
 namespace PaymentGatewaySample.Domain.Entities
 {

@@ -17,7 +17,7 @@ namespace PaymentGatewaySample.Controllers
 
         public SaleController(ISaleService saleService, ITransactionFinder transactionFinder)
         {
-            SaleService = saleService;
+            SaleService = saleService ?? throw new ArgumentNullException(nameof(saleService));
             TransactionFinder = transactionFinder;
         }
 
@@ -31,7 +31,7 @@ namespace PaymentGatewaySample.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] SaleRequest request)
         {
-            await SaleService.Process();
+            await SaleService.Process(request);
             return Ok();
         }
 

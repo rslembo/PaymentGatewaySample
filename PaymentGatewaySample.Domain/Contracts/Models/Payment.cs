@@ -8,10 +8,11 @@ namespace PaymentGatewaySample.Domain.Contracts.Models
         [Required]
         public PaymentType Type { get; set; }
         [Required]
-        public long Amount { get; set; }
+        public long? Amount { get; set; }
         public string Currency { get; set; }
         public byte Installments { get; set; }
         public string SoftDescriptor { get; set; }
+        [Required]
         public CreditCard CreditCard { get; set; }
     }
 }
