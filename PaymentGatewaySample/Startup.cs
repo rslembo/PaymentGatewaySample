@@ -30,6 +30,7 @@ namespace PaymentGatewaySample
 
             services.AddScoped<ISaleService, SaleService>();
             services.AddScoped<ITransactionFinder, TransactionFinder>();
+            services.AddScoped<IMerchantFinder, MerchantFinder>();
 
             services.AddScoped<IMerchantRepository, MerchantRepository>();
             services.AddScoped<ITransactionRepository, TransactionRepository>();

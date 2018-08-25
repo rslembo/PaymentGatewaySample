@@ -1,4 +1,4 @@
-﻿using PaymentGatewaySample.Domain.Contracts;
+﻿using PaymentGatewaySample.Domain.Dtos;
 using PaymentGatewaySample.Domain.Entities;
 using PaymentGatewaySample.Domain.Repositories;
 using PaymentGatewaySample.Domain.Services;
@@ -9,22 +9,22 @@ namespace PaymentGatewaySample.Services.Implementation
 {
     public class SaleService : ISaleService
     {
-        public IMerchantRepository MerchantRepository { get; }
+        public IMerchantFinder MerchantFinder { get; }
         public ITransactionRepository TransactionRepository { get; }
 
-        public SaleService(IMerchantRepository merchantRepository, ITransactionRepository transactionRepository)
+        public SaleService(IMerchantFinder merchantFinder, ITransactionRepository transactionRepository)
         {
-            MerchantRepository = merchantRepository;
+            MerchantFinder = merchantFinder;
             TransactionRepository = transactionRepository;
         }
 
-        public async Task Process(SaleRequest request)
+        public async Task Process(TransactionDto transactionDto)
         {
             try
             {
-                var merchants = await MerchantRepository.FindAllAsync();
+                var merchants = await MerchantFinder.FindAllAsync();
 
-                var transaction = ConvertTransactionFromSaleRequest(request);
+                var transaction = ConvertTransactionFromTransactionDto(transactionDto);
                 await TransactionRepository.InsertAsync(transaction);
 
                 var transactions = await TransactionRepository.FindByMerchantIdAsync(Guid.Parse("881443DF-B87D-496F-A79A-A7D43A580BEE"));
@@ -33,25 +33,23 @@ namespace PaymentGatewaySample.Services.Implementation
             {
                 throw ex;
             }
-
-            throw new NotImplementedException();
         }
 
-        private Transaction ConvertTransactionFromSaleRequest(SaleRequest request)
+        private Transaction ConvertTransactionFromTransactionDto(TransactionDto transactionDto)
         {
             return new Transaction
             {
-                RequestId = request.RequestId,
-                MerchantOrderId = request.MerchantOrderId,
+                RequestId = transactionDto.RequestId,
+                MerchantOrderId = transactionDto.MerchantOrderId,
                 Payment = new Payment
                 {
-                    Amount = request.Payment.Amount.Value,
+                    Amount = transactionDto.Payment.Amount.Value,
                     CreditCard = new CreditCard
                     {
-                        Number = request.Payment.CreditCard.Number,
-                        ExpirationMonth = request.Payment.CreditCard.ExpirationMonth,
-                        ExpirationYear = request.Payment.CreditCard.ExpirationYear,
-                        Brand = request.Payment.CreditCard.Brand
+                        Number = transactionDto.Payment.CreditCard.Number,
+                        ExpirationMonth = transactionDto.Payment.CreditCard.ExpirationMonth,
+                        ExpirationYear = transactionDto.Payment.CreditCard.ExpirationYear,
+                        Brand = transactionDto.Payment.CreditCard.Brand
                     },
                     Type = Domain.Enums.PaymentType.CreditCard
                 },
