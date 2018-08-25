@@ -1,5 +1,6 @@
 ﻿using PaymentGatewaySample.Domain.Contracts.Models;
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace PaymentGatewaySample.Domain.Contracts
 {
@@ -8,6 +9,7 @@ namespace PaymentGatewaySample.Domain.Contracts
         public Guid? RequestId { get; set; }
         public string MerchantOrderId { get; set; }
         public Customer Customer { get; set; }
+        [Required]
         public Payment Payment { get; set; }
     }
 }

@@ -30,6 +30,22 @@ VALUES
 	('ClearSale');
 
 INSERT INTO [MerchantAntifraudConfiguration]
-	([MerchantId], [AntifraudProvider], [IsEnabled], [ClientId], [ClientSecret])
+	([MerchantId], [Provider], [IsEnabled], [ClientId], [ClientSecret])
 VALUES
 	((SELECT [Id] FROM [Merchant] WHERE [BillingName] = 'ABC Store'), 1, 1, '0e5639c2742263323d4274b35b5bf305b8816df4', 'aa92511f5c8c7d907ea9af66b07c81f3863058ef');
+
+INSERT INTO [TransactionStatus]
+	([Name])
+VALUES
+	('Undefined'),
+    ('Accepted'),
+    ('Rejected'),
+    ('Captured'),
+    ('Canceled'),
+    ('Reversed'),
+    ('Aborted');
+
+INSERT INTO [PaymentType]
+	([Name])
+VALUES
+	('CreditCard');

@@ -12,7 +12,6 @@ namespace PaymentGatewaySample.Repositories.Configurations
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
             builder.Property(x => x.CreatedDate).ValueGeneratedOnAdd();
-            builder.Property(x => x.Provider).HasColumnName("AntifraudProvider");
         }
     }
 }

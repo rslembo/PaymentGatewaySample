@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using PaymentGatewaySample.Domain.Contracts;
+using PaymentGatewaySample.Domain.Contracts.Models;
 using PaymentGatewaySample.Domain.Services;
 
 namespace PaymentGatewaySample.Controllers
@@ -31,6 +33,19 @@ namespace PaymentGatewaySample.Controllers
         {
             await SaleService.Process();
             return Ok();
+        }
+
+        private IEnumerable<Link> GetLinks(Guid id)
+        {
+            return new List<Link>
+            {
+                new Link
+                {
+                    Method = "GET",
+                    Href = $"http://localhost:51425/api/sale/{id}",
+                    Rel = "self"
+                }
+            };
         }
     }
 }

@@ -21,6 +21,10 @@ namespace PaymentGatewaySample.Repositories.Configurations
                 .HasOne(x => x.AntifraudConfiguration)
                 .WithOne(x => x.Merchant)
                 .HasForeignKey<MerchantAntifraudConfiguration>("MerchantId");
+
+            builder
+                .HasMany(x => x.Transactions)
+                .WithOne(x => x.Merchant);
         }
     }
 }

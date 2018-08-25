@@ -1,19 +1,16 @@
 ﻿using PaymentGatewaySample.Domain.Enums;
-using System.ComponentModel.DataAnnotations;
 
-namespace PaymentGatewaySample.Domain.Contracts.Models
+namespace PaymentGatewaySample.Domain.Entities
 {
     public class CreditCard
     {
-        [Required]
+        public int Id { get; set; }
         public string Number { get; set; }
         public string Holder { get; set; }
-        [Required]
         public string ExpirationMonth { get; set; }
-        [Required]
         public string ExpirationYear { get; set; }
         public string SecurityCode { get; set; }
-        [Required]
         public CardBrand Brand { get; set; }
+        public virtual Payment Payment { get; set; }
     }
 }

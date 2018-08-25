@@ -10,6 +10,7 @@ namespace PaymentGatewaySample.Domain.Entities
         public string BillingName { get; set; }
         public virtual IEnumerable<MerchantPaymentConfiguration> PaymentConfigurations { get; set; }
         public virtual MerchantAntifraudConfiguration AntifraudConfiguration { get; set; }
+        public virtual IEnumerable<Transaction> Transactions { get; set; }
         public DateTime CreatedDate { get; set; }
     }
 }

@@ -5,6 +5,9 @@
         Undefined,
         Accepted,
         Rejected,
+        Captured,
+        Canceled,
+        Reversed,
         Aborted
     }
 }

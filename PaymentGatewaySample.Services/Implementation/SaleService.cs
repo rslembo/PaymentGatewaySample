@@ -16,7 +16,14 @@ namespace PaymentGatewaySample.Services.Implementation
 
         public async Task Process()
         {
-            var merchants = await MerchantRepository.FindAllAsync();
+            try
+            {
+                var merchants = await MerchantRepository.FindAllAsync();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
 
             throw new NotImplementedException();
         }
