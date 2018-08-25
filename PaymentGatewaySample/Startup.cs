@@ -6,8 +6,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PaymentGatewaySample.Domain.Repositories;
 using PaymentGatewaySample.Domain.Services;
+using PaymentGatewaySample.Domain.Services.Factories;
+using PaymentGatewaySample.Integrations.Cielo.Services;
+using PaymentGatewaySample.Integrations.Stone.Services;
 using PaymentGatewaySample.Repositories.Context;
 using PaymentGatewaySample.Repositories.Implementation;
+using PaymentGatewaySample.Services.Factories;
 using PaymentGatewaySample.Services.Implementation;
 
 namespace PaymentGatewaySample
@@ -28,9 +32,15 @@ namespace PaymentGatewaySample
             services.AddDbContext<ApplicationDbContext>(options => 
                 options.UseLazyLoadingProxies().UseSqlServer(Configuration.GetConnectionString("Database")));
 
+
             services.AddScoped<ISaleService, SaleService>();
             services.AddScoped<ITransactionFinder, TransactionFinder>();
             services.AddScoped<IMerchantFinder, MerchantFinder>();
+            services.AddScoped<IMerchantConfigurationAcquirerFinder, MerchantConfigurationAcquirerFinder>();
+            services.AddScoped<ICieloService, CieloService>();
+            services.AddScoped<IStoneService, StoneService>();
+
+            services.AddScoped<IAcquirerServiceFactory, AcquirerServiceFactory>();
 
             services.AddScoped<IMerchantRepository, MerchantRepository>();
             services.AddScoped<ITransactionRepository, TransactionRepository>();

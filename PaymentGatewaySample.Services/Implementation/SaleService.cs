@@ -1,7 +1,7 @@
 ﻿using PaymentGatewaySample.Domain.Dtos;
 using PaymentGatewaySample.Domain.Entities;
-using PaymentGatewaySample.Domain.Repositories;
 using PaymentGatewaySample.Domain.Services;
+using PaymentGatewaySample.Domain.Services.Factories;
 using System;
 using System.Threading.Tasks;
 
@@ -9,30 +9,23 @@ namespace PaymentGatewaySample.Services.Implementation
 {
     public class SaleService : ISaleService
     {
-        public IMerchantFinder MerchantFinder { get; }
-        public ITransactionRepository TransactionRepository { get; }
+        public IMerchantConfigurationAcquirerFinder MerchantConfigurationAcquirerFinder { get; }
+        public IAcquirerServiceFactory AcquirerServiceFactory { get; }
 
-        public SaleService(IMerchantFinder merchantFinder, ITransactionRepository transactionRepository)
+        public SaleService(
+            IMerchantConfigurationAcquirerFinder merchantConfigurationAcquirerFinder, 
+            IAcquirerServiceFactory acquirerServiceFactory)
         {
-            MerchantFinder = merchantFinder;
-            TransactionRepository = transactionRepository;
+            MerchantConfigurationAcquirerFinder = merchantConfigurationAcquirerFinder ?? throw new ArgumentNullException(nameof(merchantConfigurationAcquirerFinder));
+            AcquirerServiceFactory = acquirerServiceFactory ?? throw new ArgumentNullException(nameof(acquirerServiceFactory));
         }
 
         public async Task Process(TransactionDto transactionDto)
         {
-            try
-            {
-                var merchants = await MerchantFinder.FindAllAsync();
+            var acquirer = await MerchantConfigurationAcquirerFinder.GetAcquirerByTransaction(transactionDto);
+            acquirer = Domain.Enums.Acquirer.Cielo;
 
-                var transaction = ConvertTransactionFromTransactionDto(transactionDto);
-                await TransactionRepository.InsertAsync(transaction);
-
-                var transactions = await TransactionRepository.FindByMerchantIdAsync(Guid.Parse("881443DF-B87D-496F-A79A-A7D43A580BEE"));
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            AcquirerServiceFactory.CreateService(acquirer).ProcessSale(transactionDto);
         }
 
         private Transaction ConvertTransactionFromTransactionDto(TransactionDto transactionDto)
