@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using PaymentGatewaySample.Domain.Contracts;
@@ -22,6 +23,20 @@ namespace PaymentGatewaySample.Controllers
         {
             SaleService = saleService ?? throw new ArgumentNullException(nameof(saleService));
             TransactionFinder = transactionFinder;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Get()
+        {
+            var mid = Guid.Parse(Request.Headers["MerchantId"]);
+
+            var transactions = await TransactionFinder.FindAllByMerchantIdAsync(mid);
+
+            if (transactions == null)
+                return NotFound();
+
+            transactions.Select(x => { x.Links = GetLinks(x.Id); return x; }).ToList();
+            return Ok(transactions);
         }
 
         [HttpGet("{id}")]
