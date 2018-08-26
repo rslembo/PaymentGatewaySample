@@ -38,7 +38,7 @@ namespace PaymentGatewaySample.Services.ExtensionMethods
             };
         }
 
-        //TODO: Automapper
+        //TODO: AutoMapper
         public static Transaction ConvertToTransaction(this TransactionDto transactionDto)
         {
             return new Transaction

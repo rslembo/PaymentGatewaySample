@@ -1,10 +1,11 @@
-﻿using System;
+﻿using PaymentGatewaySample.Integrations.Stone.Contracts.Models;
 using System.Collections.Generic;
-using System.Text;
 
 namespace PaymentGatewaySample.Integrations.Stone.Contracts
 {
-    class StoneRequest
+    public class StoneRequest
     {
+        public IEnumerable<CreditCardTransaction> CreditCardTransactionCollection { get; set; }
+        public Order Order { get; set; }
     }
 }

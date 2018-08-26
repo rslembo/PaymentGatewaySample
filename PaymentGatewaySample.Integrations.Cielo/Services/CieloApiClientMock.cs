@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-using PaymentGatewaySample.Integrations.Cielo.Contracts;
+﻿using PaymentGatewaySample.Integrations.Cielo.Contracts;
 using PaymentGatewaySample.Integrations.Cielo.Contracts.Models;
 using PaymentGatewaySample.Integrations.Cielo.Enums;
 using PaymentGatewaySample.Integrations.Cielo.Services.Interfaces;
@@ -10,13 +9,6 @@ namespace PaymentGatewaySample.Integrations.Cielo.Services
 {
     public class CieloApiClientMock : ICieloApiClient
     {
-        public IConfiguration Configuration { get; }
-
-        public CieloApiClientMock(IConfiguration configuration)
-        {
-            Configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
-        }
-
         public async Task<CieloResponse> PostSaleTransactionAsync(CieloRequest request, CieloMerchantCredential credential)
         {
             return await Task.Run(() => 

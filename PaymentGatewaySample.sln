@@ -11,11 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaymentGatewaySample.Reposi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaymentGatewaySample.Services", "PaymentGatewaySample.Services\PaymentGatewaySample.Services.csproj", "{E248EC67-BDA0-4F3D-AD66-13C36875D843}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentGatewaySample.Integrations.ClearSale", "PaymentGatewaySample.Integrations.ClearSale\PaymentGatewaySample.Integrations.ClearSale.csproj", "{52262C60-CBDA-4B6D-8741-D31770C7ADAA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaymentGatewaySample.Integrations.ClearSale", "PaymentGatewaySample.Integrations.ClearSale\PaymentGatewaySample.Integrations.ClearSale.csproj", "{52262C60-CBDA-4B6D-8741-D31770C7ADAA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentGatewaySample.Integrations.Cielo", "PaymentGatewaySample.Integrations.Cielo\PaymentGatewaySample.Integrations.Cielo.csproj", "{8DA6FD09-610F-41BC-999D-52CDEB0AF547}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaymentGatewaySample.Integrations.Cielo", "PaymentGatewaySample.Integrations.Cielo\PaymentGatewaySample.Integrations.Cielo.csproj", "{8DA6FD09-610F-41BC-999D-52CDEB0AF547}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentGatewaySample.Integrations.Stone", "PaymentGatewaySample.Integrations.Stone\PaymentGatewaySample.Integrations.Stone.csproj", "{4B568554-04D9-4359-91F8-60FC0D2E6FD0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaymentGatewaySample.Integrations.Stone", "PaymentGatewaySample.Integrations.Stone\PaymentGatewaySample.Integrations.Stone.csproj", "{4B568554-04D9-4359-91F8-60FC0D2E6FD0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{20E33EAA-8430-4B61-BE0B-F5E379A47EF4}"
 	ProjectSection(SolutionItems) = preProject

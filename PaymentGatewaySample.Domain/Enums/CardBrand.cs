@@ -4,6 +4,13 @@
     {
         Undefined,
         Master,
-        Visa
+        Visa,
+        Amex,
+        Elo,
+        Aura,
+        Jcb,
+        Diners,
+        Discover,
+        Hipercard
     }
 }

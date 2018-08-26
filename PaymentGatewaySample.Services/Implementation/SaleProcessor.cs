@@ -25,7 +25,6 @@ namespace PaymentGatewaySample.Services.Implementation
         public async Task<TransactionDto> Process(TransactionDto transactionDto)
         {
             var acquirer = await MerchantConfigurationAcquirerFinder.GetAcquirerByTransaction(transactionDto);
-            acquirer = Domain.Enums.Acquirer.Cielo;
 
             transactionDto = await AcquirerServiceFactory.CreateService(acquirer).ProcessSaleAsync(transactionDto);
 

@@ -11,6 +11,7 @@ using PaymentGatewaySample.Domain.Services.Factories;
 using PaymentGatewaySample.Integrations.Cielo.Services;
 using PaymentGatewaySample.Integrations.Cielo.Services.Interfaces;
 using PaymentGatewaySample.Integrations.Stone.Services;
+using PaymentGatewaySample.Integrations.Stone.Services.Interfaces;
 using PaymentGatewaySample.Repositories.Context;
 using PaymentGatewaySample.Repositories.Implementation;
 using PaymentGatewaySample.Services.Factories;
@@ -48,12 +49,13 @@ namespace PaymentGatewaySample
             services.AddScoped<ICieloApiClient, CieloApiClientMock>();
             //services.AddScoped<ICieloApiClient, CieloApiClient>();
             services.AddScoped<IStoneService, StoneService>();
+            //services.AddScoped<IStoneApiClient, StoneApiClient>();
+            services.AddScoped<IStoneApiClient, StoneApiClientMock>();
 
             services.AddScoped<IAcquirerServiceFactory, AcquirerServiceFactory>();
 
             services.AddScoped<IMerchantRepository, MerchantRepository>();
             services.AddScoped<ITransactionRepository, TransactionRepository>();
-            //services.AddScoped<IMerchantRepository, MerchantRepositoryMock>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
