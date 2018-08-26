@@ -10,5 +10,6 @@ namespace PaymentGatewaySample.Domain.Contracts
         public string MerchantOrderId { get; set; }
         [Required]
         public Payment Payment { get; set; }
+        public FraudAnalysis FraudAnalysis { get; set; }
     }
 }

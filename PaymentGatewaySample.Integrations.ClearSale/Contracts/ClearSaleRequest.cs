@@ -1,10 +1,13 @@
-﻿using System;
+﻿using PaymentGatewaySample.Integrations.ClearSale.Contracts.Models;
 using System.Collections.Generic;
-using System.Text;
 
 namespace PaymentGatewaySample.Integrations.ClearSale.Contracts
 {
-    class ClearSaleRequest
+    public class ClearSaleRequest
     {
+        public string ApiKey { get; set; }
+        public string LoginToken { get; set; }
+        public IEnumerable<Order> Orders { get; set; }
+        public string AnalysisLocation { get; set; }
     }
 }
