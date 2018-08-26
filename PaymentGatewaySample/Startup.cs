@@ -10,6 +10,8 @@ using PaymentGatewaySample.Domain.Services;
 using PaymentGatewaySample.Domain.Services.Factories;
 using PaymentGatewaySample.Integrations.Cielo.Services;
 using PaymentGatewaySample.Integrations.Cielo.Services.Interfaces;
+using PaymentGatewaySample.Integrations.ClearSale.Services;
+using PaymentGatewaySample.Integrations.ClearSale.Services.Interfaces;
 using PaymentGatewaySample.Integrations.Stone.Services;
 using PaymentGatewaySample.Integrations.Stone.Services.Interfaces;
 using PaymentGatewaySample.Repositories.Context;
@@ -41,16 +43,23 @@ namespace PaymentGatewaySample
                 options.UseLazyLoadingProxies().UseSqlServer(Configuration.GetConnectionString("Database")));
 
             services.AddScoped<ISaleProcessor, SaleProcessor>();
+            services.Decorate<ISaleProcessor, AntifraudProcessor>();
             services.AddScoped<ITransactionCreator, TransactionCreator>();
             services.AddScoped<ITransactionFinder, TransactionFinder>();
             services.AddScoped<IMerchantFinder, MerchantFinder>();
             services.AddScoped<IMerchantConfigurationAcquirerFinder, MerchantConfigurationAcquirerFinder>();
+
             services.AddScoped<ICieloService, CieloService>();
             services.AddScoped<ICieloApiClient, CieloApiClientMock>();
             //services.AddScoped<ICieloApiClient, CieloApiClient>();
+
             services.AddScoped<IStoneService, StoneService>();
             //services.AddScoped<IStoneApiClient, StoneApiClient>();
             services.AddScoped<IStoneApiClient, StoneApiClientMock>();
+
+            services.AddScoped<IClearSaleService, ClearSaleService>();
+            //services.AddScoped<IClearSaleApiClient, ClearSaleApiClient>();
+            services.AddScoped<IClearSaleApiClient, ClearSaleApiClientMock>();
 
             services.AddScoped<IAcquirerServiceFactory, AcquirerServiceFactory>();
 

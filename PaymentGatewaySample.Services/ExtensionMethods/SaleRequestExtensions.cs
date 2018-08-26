@@ -16,6 +16,9 @@ namespace PaymentGatewaySample.Services.ExtensionMethods
                 {
                     BirthDate = saleRequest.Customer.BirthDate,
                     Email = saleRequest.Customer.Email,
+                    IpAddress = saleRequest.Customer.IpAddress,
+                    PhoneAreaCode = saleRequest.Customer.PhoneAreaCode,
+                    PhoneNumber = saleRequest.Customer.PhoneNumber,
                     Identity = saleRequest.Customer.Identity,
                     IdentityType = saleRequest.Customer.IdentityType,
                     Name = saleRequest.Customer.Name,

@@ -66,6 +66,9 @@ CREATE TABLE [Customer] (
 	[Identity] [varchar](50),
 	[IdentityType] [varchar](50),
 	[Email] [varchar](50),
+	[IpAddress] [varchar](50),
+	[PhoneAreaCode] [varchar](10),
+	[PhoneNumber] [varchar](50),
 	[BirthDate] [datetime],
 	[State] [varchar](2),
 	[TransactionId] [UNIQUEIDENTIFIER] NOT NULL FOREIGN KEY REFERENCES [Transaction](Id)
@@ -123,10 +126,16 @@ CREATE TABLE [CreditCard] (
 	[PaymentId] [int] FOREIGN KEY REFERENCES [Payment](Id),
 );
 
+CREATE TABLE [FraudAnalysisStatus] (
+	[Id] [int] IDENTITY(1,1) PRIMARY KEY,
+	[Name] [varchar](50) NOT NULL
+);
+
 CREATE TABLE [FraudAnalysis] (
 	[Id] [int] IDENTITY(1,1) PRIMARY KEY,
-	[ProviderId] [int],
-	[Status] [varchar](3),
-	[Score] [int],
+	[ProviderId] [varchar](100),
+	[Score] [decimal](18,4),
+	[Message] [varchar](100),
+	[Status] [int] FOREIGN KEY REFERENCES [FraudAnalysisStatus](Id),
 	[TransactionId] [UNIQUEIDENTIFIER] NOT NULL FOREIGN KEY REFERENCES [Transaction](Id)
 );

@@ -1,4 +1,4 @@
-﻿namespace PaymentGatewaySample.Integrations.ClearSale.Enums
+﻿namespace PaymentGatewaySample.Domain.Enums
 {
     public enum FraudAnalysisStatus
     {

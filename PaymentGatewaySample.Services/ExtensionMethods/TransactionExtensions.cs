@@ -17,6 +17,9 @@ namespace PaymentGatewaySample.Services.ExtensionMethods
                 {
                     BirthDate = transaction.Customer.BirthDate,
                     Email = transaction.Customer.Email,
+                    IpAddress = transaction.Customer.IpAddress,
+                    PhoneAreaCode = transaction.Customer.PhoneAreaCode,
+                    PhoneNumber = transaction.Customer.PhoneNumber,
                     Identity = transaction.Customer.Identity,
                     IdentityType = transaction.Customer.IdentityType,
                     Name = transaction.Customer.Name,
@@ -54,6 +57,13 @@ namespace PaymentGatewaySample.Services.ExtensionMethods
                         Brand = transaction.Payment.CreditCard.Brand
                     },
                     Type = Domain.Enums.PaymentType.CreditCard
+                },
+                FraudAnalysis = new FraudAnalysisDto
+                {
+                    ProviderId = transaction.FraudAnalysis?.ProviderId,
+                    Score = transaction.FraudAnalysis?.Score,
+                    Status = transaction.FraudAnalysis?.Status,
+                    Message = transaction.FraudAnalysis?.Message
                 },
                 Status = Domain.Enums.TransactionStatus.Captured,
                 ProofOfSale = transaction.ProofOfSale,

@@ -12,11 +12,13 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
+    <PackageReference Include="Scrutor" Version="2.2.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\PaymentGatewaySample.Domain\PaymentGatewaySample.Domain.csproj" />
     <ProjectReference Include="..\PaymentGatewaySample.Integrations.Cielo\PaymentGatewaySample.Integrations.Cielo.csproj" />
+    <ProjectReference Include="..\PaymentGatewaySample.Integrations.ClearSale\PaymentGatewaySample.Integrations.ClearSale.csproj" />
     <ProjectReference Include="..\PaymentGatewaySample.Integrations.Stone\PaymentGatewaySample.Integrations.Stone.csproj" />
     <ProjectReference Include="..\PaymentGatewaySample.Repository\PaymentGatewaySample.Repositories.csproj" />
     <ProjectReference Include="..\PaymentGatewaySample.Services\PaymentGatewaySample.Services.csproj" />

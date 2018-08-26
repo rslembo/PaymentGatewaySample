@@ -12,14 +12,14 @@ namespace PaymentGatewaySample.Services.Implementation
     {
         public IMerchantConfigurationAcquirerFinder MerchantConfigurationAcquirerFinder { get; }
         public IAcquirerServiceFactory AcquirerServiceFactory { get; }
-        public ITransactionCreator TransactionService { get; }
+        public ITransactionCreator TransactionCreator { get; }
 
         public SaleProcessor(IMerchantConfigurationAcquirerFinder merchantConfigurationAcquirerFinder, 
             IAcquirerServiceFactory acquirerServiceFactory, ITransactionCreator transactionService)
         {
             MerchantConfigurationAcquirerFinder = merchantConfigurationAcquirerFinder ?? throw new ArgumentNullException(nameof(merchantConfigurationAcquirerFinder));
             AcquirerServiceFactory = acquirerServiceFactory ?? throw new ArgumentNullException(nameof(acquirerServiceFactory));
-            TransactionService = transactionService ?? throw new ArgumentNullException(nameof(transactionService));
+            TransactionCreator = transactionService ?? throw new ArgumentNullException(nameof(transactionService));
         }
 
         public async Task<TransactionDto> Process(TransactionDto transactionDto)
@@ -29,7 +29,7 @@ namespace PaymentGatewaySample.Services.Implementation
             transactionDto = await AcquirerServiceFactory.CreateService(acquirer).ProcessSaleAsync(transactionDto);
 
             var transaction = transactionDto.ConvertToTransaction();
-            await TransactionService.InsertAsync(transaction);
+            await TransactionCreator.InsertAsync(transaction);
 
             transactionDto.Id = transaction.Id;
             transactionDto.CreatedDate = transaction.CreatedDate;

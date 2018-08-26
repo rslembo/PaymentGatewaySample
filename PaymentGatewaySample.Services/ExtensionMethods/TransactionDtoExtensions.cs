@@ -20,6 +20,9 @@ namespace PaymentGatewaySample.Services.ExtensionMethods
                 {
                     BirthDate = transactionDto.Customer.BirthDate,
                     Email = transactionDto.Customer.Email,
+                    IpAddress = transactionDto.Customer.IpAddress,
+                    PhoneAreaCode = transactionDto.Customer.PhoneAreaCode,
+                    PhoneNumber = transactionDto.Customer.PhoneNumber,
                     Identity = transactionDto.Customer.Identity,
                     IdentityType = transactionDto.Customer.IdentityType,
                     Name = transactionDto.Customer.Name,
@@ -58,6 +61,13 @@ namespace PaymentGatewaySample.Services.ExtensionMethods
                         Brand = transactionDto.Payment.CreditCard.Brand
                     }
                 },
+                FraudAnalysis = new Domain.Contracts.Models.FraudAnalysis
+                {
+                    ProviderId = transactionDto.FraudAnalysis?.ProviderId,
+                    Score = transactionDto.FraudAnalysis?.Score,
+                    Status = transactionDto.FraudAnalysis?.Status,
+                    Message = transactionDto.FraudAnalysis?.Message
+                },
                 ProofOfSale = transactionDto.ProofOfSale,
                 AcquirerTransactionKey = transactionDto.AcquirerTransactionKey,
                 AuthorizationCode = transactionDto.AuthorizationCode,
@@ -80,6 +90,9 @@ namespace PaymentGatewaySample.Services.ExtensionMethods
                 {
                     BirthDate = transactionDto.Customer.BirthDate,
                     Email = transactionDto.Customer.Email,
+                    IpAddress = transactionDto.Customer.IpAddress,
+                    PhoneAreaCode = transactionDto.Customer.PhoneAreaCode,
+                    PhoneNumber = transactionDto.Customer.PhoneNumber,
                     Identity = transactionDto.Customer.Identity,
                     IdentityType = transactionDto.Customer.IdentityType,
                     Name = transactionDto.Customer.Name,
@@ -121,6 +134,14 @@ namespace PaymentGatewaySample.Services.ExtensionMethods
                 Merchant = new Merchant
                 {
                     Id = transactionDto.MerchantId.Value
+                },
+                FraudAnalysis = transactionDto.FraudAnalysis == null ? null : 
+                new Domain.Entities.FraudAnalysis
+                {
+                    ProviderId = transactionDto.FraudAnalysis.ProviderId,
+                    Score = transactionDto.FraudAnalysis.Score,
+                    Status = transactionDto.FraudAnalysis.Status,
+                    Message = transactionDto.FraudAnalysis.Message
                 },
                 ProofOfSale = transactionDto.ProofOfSale,
                 AcquirerTransactionKey = transactionDto.AcquirerTransactionKey,

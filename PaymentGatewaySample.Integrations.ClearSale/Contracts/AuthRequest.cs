@@ -1,7 +1,9 @@
-﻿namespace PaymentGatewaySample.Integrations.ClearSale.Contracts
+﻿using PaymentGatewaySample.Integrations.ClearSale.Contracts.Models;
+
+namespace PaymentGatewaySample.Integrations.ClearSale.Contracts
 {
     public class AuthRequest
     {
-        public AuthRequest Login { get; set; }
+        public Login Login { get; set; }
     }
 }

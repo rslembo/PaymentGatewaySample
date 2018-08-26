@@ -4,4 +4,9 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PaymentGatewaySample.Domain\PaymentGatewaySample.Domain.csproj" />
+    <ProjectReference Include="..\PaymentGatewaySample.Repository\PaymentGatewaySample.Repositories.csproj" />
+  </ItemGroup>
+
 </Project>

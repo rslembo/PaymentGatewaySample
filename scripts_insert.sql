@@ -49,3 +49,18 @@ INSERT INTO [PaymentType]
 	([Name])
 VALUES
 	('CreditCard');
+
+INSERT INTO [FraudAnalysisStatus]
+	([Name])
+VALUES
+	('APA'),
+    ('APM'),
+    ('RPM'),
+    ('AMA'),
+    ('ERR'),
+    ('NVO'),
+    ('SUS'),
+	('CAN'),
+	('FRD'),
+	('RPA'),
+	('RPP');

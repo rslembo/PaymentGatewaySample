@@ -8,6 +8,9 @@ namespace PaymentGatewaySample.Domain.Dtos
         public string Identity { get; set; }
         public string IdentityType { get; set; }
         public string Email { get; set; }
+        public string IpAddress { get; set; }
+        public string PhoneAreaCode { get; set; }
+        public string PhoneNumber { get; set; }
         public DateTime? BirthDate { get; set; }
         public ShippingAddressDto ShippingAddress { get; set; }
         public BillingAddressDto BillingAddress { get; set; }

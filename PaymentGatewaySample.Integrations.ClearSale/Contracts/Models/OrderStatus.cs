@@ -1,4 +1,5 @@
-﻿using PaymentGatewaySample.Integrations.ClearSale.Enums;
+﻿using PaymentGatewaySample.Domain.Enums;
+using PaymentGatewaySample.Integrations.ClearSale.Enums;
 
 namespace PaymentGatewaySample.Integrations.ClearSale.Contracts.Models
 {
