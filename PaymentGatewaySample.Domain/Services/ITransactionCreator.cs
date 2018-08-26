@@ -5,10 +5,8 @@ using System.Threading.Tasks;
 
 namespace PaymentGatewaySample.Domain.Services
 {
-    public interface ITransactionService
+    public interface ITransactionCreator
     {
         Task InsertAsync(Transaction transaction);
-        //Task<IEnumerable<Transaction>> FindByMerchantIdAsync(Guid id);
-        //Task<Transaction> FindByIdAsync(Guid id);
     }
 }

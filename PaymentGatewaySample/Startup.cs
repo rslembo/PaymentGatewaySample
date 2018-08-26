@@ -39,9 +39,8 @@ namespace PaymentGatewaySample
             services.AddDbContext<ApplicationDbContext>(options => 
                 options.UseLazyLoadingProxies().UseSqlServer(Configuration.GetConnectionString("Database")));
 
-
-            services.AddScoped<ISaleService, SaleService>();
-            services.AddScoped<ITransactionService, TransactionService>();
+            services.AddScoped<ISaleProcessor, SaleProcessor>();
+            services.AddScoped<ITransactionCreator, TransactionCreator>();
             services.AddScoped<ITransactionFinder, TransactionFinder>();
             services.AddScoped<IMerchantFinder, MerchantFinder>();
             services.AddScoped<IMerchantConfigurationAcquirerFinder, MerchantConfigurationAcquirerFinder>();

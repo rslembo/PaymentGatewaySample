@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace PaymentGatewaySample.Services.Implementation
 {
-    public class TransactionService : ITransactionService
+    public class TransactionCreator : ITransactionCreator
     {
         public ITransactionRepository TransactionRepository { get; }
 
-        public TransactionService(ITransactionRepository transactionRepository)
+        public TransactionCreator(ITransactionRepository transactionRepository)
         {
             TransactionRepository = transactionRepository ?? throw new ArgumentNullException(nameof(transactionRepository));
         }
@@ -19,15 +19,5 @@ namespace PaymentGatewaySample.Services.Implementation
         {
             await TransactionRepository.InsertAsync(transaction);
         }
-
-        //public async Task<IEnumerable<Transaction>> FindByMerchantIdAsync(Guid id)
-        //{
-        //    return await TransactionRepository.FindByMerchantIdAsync(id);
-        //}
-
-        //public async Task<Transaction> FindByIdAsync(Guid id)
-        //{
-        //    return await TransactionRepository.FindByIdAsync(id);
-        //}
     }
 }

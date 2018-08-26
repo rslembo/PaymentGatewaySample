@@ -1,7 +1,7 @@
 ﻿using PaymentGatewaySample.Domain.Dtos;
-using PaymentGatewaySample.Domain.Entities;
 using PaymentGatewaySample.Domain.Repositories;
 using PaymentGatewaySample.Domain.Services;
+using PaymentGatewaySample.Services.ExtensionMethods;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +28,7 @@ namespace PaymentGatewaySample.Services.Implementation
                 return null;
 
             foreach (var transaction in transactions)
-                transactionDtos.Add(ConvertTransactionDtoFromTransaction(transaction));
+                transactionDtos.Add(transaction.ConvertToTransactionDto());
 
             return transactionDtos;
         }
@@ -40,37 +40,7 @@ namespace PaymentGatewaySample.Services.Implementation
             if (transaction == null)
                 return null;
 
-            return ConvertTransactionDtoFromTransaction(transaction);
-        }
-
-        private TransactionDto ConvertTransactionDtoFromTransaction(Transaction transaction)
-        {
-            return new TransactionDto
-            {
-                Id = transaction.Id,
-                RequestId = transaction.RequestId,
-                MerchantOrderId = transaction.MerchantOrderId,
-                Payment = new PaymentDto
-                {
-                    Amount = transaction.Payment.Amount,
-                    CreditCard = new CreditCardDto
-                    {
-                        Number = transaction.Payment.CreditCard.Number,
-                        ExpirationMonth = transaction.Payment.CreditCard.ExpirationMonth,
-                        ExpirationYear = transaction.Payment.CreditCard.ExpirationYear,
-                        Brand = transaction.Payment.CreditCard.Brand
-                    },
-                    Type = Domain.Enums.PaymentType.CreditCard
-                },
-                Status = Domain.Enums.TransactionStatus.Captured,
-                ProofOfSale = transaction.ProofOfSale,
-                AcquirerTransactionKey = transaction.AcquirerTransactionKey,
-                AuthorizationCode = transaction.AuthorizationCode,
-                AcquirerTransactionId = transaction.AcquirerTransactionId,
-                ReturnCode = transaction.ReturnCode,
-                ReturnMessage = transaction.ReturnMessage,
-                CreatedDate = transaction.CreatedDate
-            };
+            return transaction.ConvertToTransactionDto();
         }
     }
 }

@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace PaymentGatewaySample.Domain.Services
 {
-    public interface ISaleService
+    public interface ISaleProcessor
     {
         Task<TransactionDto> Process(TransactionDto transactionDto);
     }
