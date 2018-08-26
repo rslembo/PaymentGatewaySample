@@ -1,10 +1,11 @@
-﻿using System;
-using System.Transactions;
+﻿using PaymentGatewaySample.Domain.Dtos;
+using System;
+using System.Threading.Tasks;
 
 namespace PaymentGatewaySample.Domain.Services
 {
     public interface ITransactionFinder
     {
-        Transaction FindById(Guid id);
+        Task<TransactionDto> FindByIdAndMerchantIdAsync(Guid id, Guid merchantId);
     }
 }

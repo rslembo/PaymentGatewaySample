@@ -15,7 +15,7 @@ namespace PaymentGatewaySample.Repositories.Implementation
 
         public MerchantRepository(ApplicationDbContext dbContext)
         {
-            DbContext = dbContext;
+            DbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
         }
 
         public async Task<IEnumerable<Merchant>> FindAllAsync()

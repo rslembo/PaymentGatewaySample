@@ -20,7 +20,7 @@ namespace PaymentGatewaySample.Services.Implementation
         {
             var paymentBrand = transactionDto.Payment.CreditCard.Brand;
 
-            var merchant = await MerchantFinder.FindByIdAsync(transactionDto.MerchantId);
+            var merchant = await MerchantFinder.FindByIdAsync(transactionDto.MerchantId.Value);
 
             var acquirer = merchant.PaymentConfigurations.Where(x => x.Brand == paymentBrand).Select(x => x.Acquirer).Single();
             return acquirer;

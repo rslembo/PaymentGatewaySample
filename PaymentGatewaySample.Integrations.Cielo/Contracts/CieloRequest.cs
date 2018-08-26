@@ -1,10 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using PaymentGatewaySample.Integrations.Cielo.Contracts.Models;
+using System;
 
 namespace PaymentGatewaySample.Integrations.Cielo.Contracts
 {
-    class CieloRequest
+    public class CieloRequest
     {
+        public Guid? RequestId { get; set; }
+        public string MerchantOrderId { get; set; }
+        public Payment Payment { get; set; }
     }
 }

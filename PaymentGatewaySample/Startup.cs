@@ -4,10 +4,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
 using PaymentGatewaySample.Domain.Repositories;
 using PaymentGatewaySample.Domain.Services;
 using PaymentGatewaySample.Domain.Services.Factories;
 using PaymentGatewaySample.Integrations.Cielo.Services;
+using PaymentGatewaySample.Integrations.Cielo.Services.Interfaces;
 using PaymentGatewaySample.Integrations.Stone.Services;
 using PaymentGatewaySample.Repositories.Context;
 using PaymentGatewaySample.Repositories.Implementation;
@@ -27,17 +29,25 @@ namespace PaymentGatewaySample
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().AddJsonOptions(x => 
+            {
+                x.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
+                x.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                x.SerializerSettings.Formatting = Formatting.Indented;
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddDbContext<ApplicationDbContext>(options => 
                 options.UseLazyLoadingProxies().UseSqlServer(Configuration.GetConnectionString("Database")));
 
 
             services.AddScoped<ISaleService, SaleService>();
+            services.AddScoped<ITransactionService, TransactionService>();
             services.AddScoped<ITransactionFinder, TransactionFinder>();
             services.AddScoped<IMerchantFinder, MerchantFinder>();
             services.AddScoped<IMerchantConfigurationAcquirerFinder, MerchantConfigurationAcquirerFinder>();
             services.AddScoped<ICieloService, CieloService>();
+            services.AddScoped<ICieloApiClient, CieloApiClientMock>();
+            //services.AddScoped<ICieloApiClient, CieloApiClient>();
             services.AddScoped<IStoneService, StoneService>();
 
             services.AddScoped<IAcquirerServiceFactory, AcquirerServiceFactory>();

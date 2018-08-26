@@ -1,14 +1,14 @@
 ﻿using PaymentGatewaySample.Domain.Entities;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace PaymentGatewaySample.Domain.Repositories
+namespace PaymentGatewaySample.Domain.Services
 {
-    public interface ITransactionRepository
+    public interface ITransactionService
     {
         Task InsertAsync(Transaction transaction);
         //Task<IEnumerable<Transaction>> FindByMerchantIdAsync(Guid id);
         //Task<Transaction> FindByIdAsync(Guid id);
-        Task<Transaction> FindByIdAndMerchantIdAsync(Guid id, Guid merchantId);
     }
 }

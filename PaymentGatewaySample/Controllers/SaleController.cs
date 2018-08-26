@@ -12,36 +12,44 @@ namespace PaymentGatewaySample.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [MerchantAuthorize]
     public class SaleController : ControllerBase
     {
         public ISaleService SaleService { get; }
         public ITransactionFinder TransactionFinder { get; }
-        public IMerchantFinder MerchantFinder { get; }
 
-        public SaleController(ISaleService saleService, ITransactionFinder transactionFinder, IMerchantFinder merchantFinder)
+        public SaleController(ISaleService saleService, ITransactionFinder transactionFinder)
         {
             SaleService = saleService ?? throw new ArgumentNullException(nameof(saleService));
             TransactionFinder = transactionFinder;
-            MerchantFinder = merchantFinder;
         }
 
         [HttpGet("{id}")]
-        public IActionResult Get(Guid id)
+        public async Task<IActionResult> Get(Guid id)
         {
-            var transaction = TransactionFinder.FindById(id);
-            return Ok("Transaction");
+            var mid = Guid.Parse(Request.Headers["MerchantId"]);
+
+            var transaction = await TransactionFinder.FindByIdAndMerchantIdAsync(id, mid);
+
+            if (transaction == null)
+                return NotFound();
+
+            transaction.Links = GetLinks(transaction.Id);
+            return Ok(transaction);
         }
 
         [HttpPost]
-        [MerchantAuthorize]
         public async Task<IActionResult> Post([FromBody] SaleRequest request)
         {
-            var merchantId = Request.Headers["MerchantId"];
-            var transactionDto = ConvertTransactionDtoFromSaleRequest(request, merchantId);
+            var transactionDto = ConvertTransactionDtoFromSaleRequest(request);
+            transactionDto.MerchantId = Guid.Parse(Request.Headers["MerchantId"]);
 
-            await SaleService.Process(transactionDto);
+            var processResult = await SaleService.Process(transactionDto);
 
-            return Ok();
+            var response = ConvertSaleResponseFromTransactionDto(transactionDto);
+            response.Links = GetLinks(response.Id);
+
+            return Created($"Sale/{response.Id}", response);
         }
 
         private IEnumerable<Link> GetLinks(Guid id)
@@ -57,7 +65,7 @@ namespace PaymentGatewaySample.Controllers
             };
         }
 
-        private TransactionDto ConvertTransactionDtoFromSaleRequest(SaleRequest request, string merchantId)
+        private TransactionDto ConvertTransactionDtoFromSaleRequest(SaleRequest request)
         {
             return new TransactionDto
             {
@@ -71,12 +79,46 @@ namespace PaymentGatewaySample.Controllers
                         Number = request.Payment.CreditCard.Number,
                         ExpirationMonth = request.Payment.CreditCard.ExpirationMonth,
                         ExpirationYear = request.Payment.CreditCard.ExpirationYear,
-                        Brand = request.Payment.CreditCard.Brand
+                        Brand = request.Payment.CreditCard.Brand,
+                        Holder = request.Payment.CreditCard.Holder,
+                        SecurityCode = request.Payment.CreditCard.SecurityCode
                     },
-                    Type = Domain.Enums.PaymentType.CreditCard
+                    Type = Domain.Enums.PaymentType.CreditCard,
+                    Currency = request.Payment.Currency,
+                    Installments = request.Payment.Installments,
+                    SoftDescriptor = request.Payment.SoftDescriptor
                 },
                 Status = Domain.Enums.TransactionStatus.Captured,
-                MerchantId = Guid.Parse(merchantId)
+            };
+        }
+
+        private SaleResponse ConvertSaleResponseFromTransactionDto(TransactionDto transactionDto)
+        {
+            return new SaleResponse
+            {
+                Id = transactionDto.Id,
+                RequestId = transactionDto.RequestId,
+                MerchantOrderId = transactionDto.MerchantOrderId,
+                Status = transactionDto.Status,
+                Payment = new Payment
+                {
+                    Amount = transactionDto.Payment.Amount,
+                    Type = transactionDto.Payment.Type,
+                    CreditCard = new CreditCard
+                    {
+                        Number = transactionDto.Payment.CreditCard.Number,
+                        ExpirationMonth = transactionDto.Payment.CreditCard.ExpirationMonth,
+                        ExpirationYear = transactionDto.Payment.CreditCard.ExpirationYear,
+                        Brand = transactionDto.Payment.CreditCard.Brand
+                    }
+                },
+                ProofOfSale = transactionDto.ProofOfSale,
+                AcquirerTransactionKey = transactionDto.AcquirerTransactionKey,
+                AuthorizationCode = transactionDto.AuthorizationCode,
+                AcquirerTransactionId = transactionDto.AcquirerTransactionId,
+                ReturnCode = transactionDto.ReturnCode,
+                ReturnMessage = transactionDto.ReturnMessage,
+                CreatedDate  = transactionDto.CreatedDate
             };
         }
     }

@@ -3,7 +3,6 @@ using PaymentGatewaySample.Domain.Entities;
 using PaymentGatewaySample.Domain.Repositories;
 using PaymentGatewaySample.Repositories.Context;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -15,7 +14,7 @@ namespace PaymentGatewaySample.Repositories.Implementation
 
         public TransactionRepository(ApplicationDbContext dbContext)
         {
-            DbContext = dbContext;
+            DbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
         }
 
         public async Task InsertAsync(Transaction transaction)
@@ -24,14 +23,19 @@ namespace PaymentGatewaySample.Repositories.Implementation
             await DbContext.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Transaction>> FindByMerchantIdAsync(Guid id)
-        {
-            return await DbContext.Transactions.Where(x => x.Merchant.Id == id).ToListAsync();
-        }
+        //public async Task<IEnumerable<Transaction>> FindByMerchantIdAsync(Guid id)
+        //{
+        //    return await DbContext.Transactions.Where(x => x.Merchant.Id == id).ToListAsync();
+        //}
 
-        public async Task<Transaction> FindByIdAsync(Guid id)
+        //public async Task<Transaction> FindByIdAsync(Guid id)
+        //{
+        //    return await DbContext.Transactions.Where(x => x.Id == id).SingleOrDefaultAsync();
+        //}
+
+        public async Task<Transaction> FindByIdAndMerchantIdAsync(Guid id, Guid merchantId)
         {
-            return await DbContext.Transactions.Where(x => x.Id == id).SingleOrDefaultAsync();
+            return await DbContext.Transactions.Where(x => x.Id == id && x.Merchant.Id == merchantId).SingleOrDefaultAsync();
         }
     }
 }

@@ -20,6 +20,8 @@ CREATE TABLE [MerchantPaymentConfiguration] (
 	[MerchantId] [UNIQUEIDENTIFIER] NOT NULL FOREIGN KEY REFERENCES [Merchant](Id),
 	[Brand] [int] NOT NULL FOREIGN KEY REFERENCES [Brand](Id),
 	[Acquirer] [int] NOT NULL FOREIGN KEY REFERENCES [Acquirer](Id),
+	[AcquirerMerchantId] [UNIQUEIDENTIFIER] NOT NULL,
+	[AcquirerMerchantKey] [varchar](100),
 	[CreatedDate] [datetime] NOT NULL DEFAULT GETDATE()
 );
 
@@ -48,32 +50,14 @@ CREATE TABLE [Transaction] (
 	[RequestId] [UNIQUEIDENTIFIER],
 	[MerchantOrderId] [varchar](50),
 	[Status] [int] NOT NULL FOREIGN KEY REFERENCES [TransactionStatus](Id),
+	[ProofOfSale] [varchar](20),
+	[AcquirerTransactionKey] [varchar](100),
+	[AuthorizationCode] [varchar](20),
+	[AcquirerTransactionId] [UNIQUEIDENTIFIER],
+	[ReturnCode] [varchar](5),
+	[ReturnMessage] [varchar](100),
 	[MerchantId] [UNIQUEIDENTIFIER] NOT NULL FOREIGN KEY REFERENCES [Merchant](Id),
 	[CreatedDate] [datetime] NOT NULL DEFAULT GETDATE()
-);
-
-CREATE TABLE [Customer] (
-	[Id] [int] IDENTITY(1,1) PRIMARY KEY,
-	[Name] [varchar](150),
-	[Identity] [varchar](50),
-	[IdentityType] [varchar](50),
-	[Email] [varchar](50),
-	[BirthDate] [datetime],
-	[State] [varchar](2),
-	[TransactionId] [UNIQUEIDENTIFIER] NOT NULL FOREIGN KEY REFERENCES [Transaction](Id)
-);
-
-CREATE TABLE [Address] (
-	[Id] [int] IDENTITY(1,1) PRIMARY KEY,
-	[Street] [varchar](150),
-	[Number] [varchar](5),
-	[Complement] [varchar](100),
-	[ZipCode] [varchar](10),
-	[District] [varchar](100),
-	[City] [varchar](150),
-	[State] [varchar](2),
-	[Country] [varchar](150),
-	[CustomerId] [int] NOT NULL FOREIGN KEY REFERENCES [Customer](Id),
 );
 
 CREATE TABLE [PaymentType] (

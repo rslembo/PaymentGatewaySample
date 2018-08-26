@@ -14,11 +14,6 @@ namespace PaymentGatewaySample.Repositories.Configurations
             builder.Property(x => x.CreatedDate).ValueGeneratedOnAdd();
 
             builder
-                .HasOne(x => x.Customer)
-                .WithOne(x => x.Transaction)
-                .HasForeignKey<Customer>("TransactionId");
-
-            builder
                 .HasOne(x => x.Payment)
                 .WithOne(x => x.Transaction)
                 .HasForeignKey<Payment>("TransactionId");

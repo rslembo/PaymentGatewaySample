@@ -11,21 +11,30 @@ namespace PaymentGatewaySample.Services.Implementation
     {
         public IMerchantConfigurationAcquirerFinder MerchantConfigurationAcquirerFinder { get; }
         public IAcquirerServiceFactory AcquirerServiceFactory { get; }
+        public ITransactionService TransactionService { get; }
 
-        public SaleService(
-            IMerchantConfigurationAcquirerFinder merchantConfigurationAcquirerFinder, 
-            IAcquirerServiceFactory acquirerServiceFactory)
+        public SaleService(IMerchantConfigurationAcquirerFinder merchantConfigurationAcquirerFinder, 
+            IAcquirerServiceFactory acquirerServiceFactory, ITransactionService transactionService)
         {
             MerchantConfigurationAcquirerFinder = merchantConfigurationAcquirerFinder ?? throw new ArgumentNullException(nameof(merchantConfigurationAcquirerFinder));
             AcquirerServiceFactory = acquirerServiceFactory ?? throw new ArgumentNullException(nameof(acquirerServiceFactory));
+            TransactionService = transactionService ?? throw new ArgumentNullException(nameof(transactionService));
         }
 
-        public async Task Process(TransactionDto transactionDto)
+        public async Task<TransactionDto> Process(TransactionDto transactionDto)
         {
             var acquirer = await MerchantConfigurationAcquirerFinder.GetAcquirerByTransaction(transactionDto);
             acquirer = Domain.Enums.Acquirer.Cielo;
 
-            AcquirerServiceFactory.CreateService(acquirer).ProcessSale(transactionDto);
+            transactionDto = await AcquirerServiceFactory.CreateService(acquirer).ProcessSaleAsync(transactionDto);
+
+            var transaction = ConvertTransactionFromTransactionDto(transactionDto);
+            await TransactionService.InsertAsync(transaction);
+
+            transactionDto.Id = transaction.Id;
+            transactionDto.CreatedDate = transaction.CreatedDate;
+
+            return transactionDto;
         }
 
         private Transaction ConvertTransactionFromTransactionDto(TransactionDto transactionDto)
@@ -34,6 +43,7 @@ namespace PaymentGatewaySample.Services.Implementation
             {
                 RequestId = transactionDto.RequestId,
                 MerchantOrderId = transactionDto.MerchantOrderId,
+                Status = transactionDto.Status,
                 Payment = new Payment
                 {
                     Amount = transactionDto.Payment.Amount.Value,
@@ -46,11 +56,16 @@ namespace PaymentGatewaySample.Services.Implementation
                     },
                     Type = Domain.Enums.PaymentType.CreditCard
                 },
-                Status = Domain.Enums.TransactionStatus.Captured,
                 Merchant = new Merchant
                 {
-                    Id = Guid.Parse("881443DF-B87D-496F-A79A-A7D43A580BEE")
-                }
+                    Id = transactionDto.MerchantId.Value
+                },
+                ProofOfSale = transactionDto.ProofOfSale,
+                AcquirerTransactionKey = transactionDto.AcquirerTransactionKey,
+                AuthorizationCode = transactionDto.AuthorizationCode,
+                AcquirerTransactionId = transactionDto.AcquirerTransactionId,
+                ReturnCode = transactionDto.ReturnCode,
+                ReturnMessage = transactionDto.ReturnMessage
             };
         }
     }

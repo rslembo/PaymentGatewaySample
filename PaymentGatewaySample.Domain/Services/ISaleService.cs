@@ -5,6 +5,6 @@ namespace PaymentGatewaySample.Domain.Services
 {
     public interface ISaleService
     {
-        Task Process(TransactionDto transactionDto);
+        Task<TransactionDto> Process(TransactionDto transactionDto);
     }
 }

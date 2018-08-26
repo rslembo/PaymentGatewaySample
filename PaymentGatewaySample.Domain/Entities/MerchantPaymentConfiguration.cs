@@ -10,5 +10,7 @@ namespace PaymentGatewaySample.Domain.Entities
         public CardBrand Brand { get; set; }
         public Acquirer Acquirer { get; set; }
         public DateTime CreatedDate { get; set; }
+        public Guid AcquirerMerchantId { get; set; }
+        public string AcquirerMerchantKey { get; set; }
     }
 }
