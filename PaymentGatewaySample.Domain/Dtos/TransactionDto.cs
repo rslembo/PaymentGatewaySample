@@ -14,6 +14,7 @@ namespace PaymentGatewaySample.Domain.Dtos
         public string MerchantOrderId { get; set; }
         [JsonConverter(typeof(StringEnumConverter))]
         public TransactionStatus Status { get; set; }
+        public CustomerDto Customer { get; set; }
         public PaymentDto Payment { get; set; }
         public FraudAnalysisDto FraudAnalysis { get; set; }
 

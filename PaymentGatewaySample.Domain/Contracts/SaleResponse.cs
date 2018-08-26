@@ -14,6 +14,7 @@ namespace PaymentGatewaySample.Domain.Contracts
         public string MerchantOrderId { get; set; }
         [JsonConverter(typeof(StringEnumConverter))]
         public TransactionStatus Status { get; set; }
+        public Customer Customer { get; set; }
         public Payment Payment { get; set; }
         public FraudAnalysis FraudAnalysis { get; set; }
         public DateTime CreatedDate { get; set; }

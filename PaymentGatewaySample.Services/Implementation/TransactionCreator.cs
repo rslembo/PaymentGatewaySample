@@ -17,7 +17,14 @@ namespace PaymentGatewaySample.Services.Implementation
 
         public async Task InsertAsync(Transaction transaction)
         {
-            await TransactionRepository.InsertAsync(transaction);
+            try
+            {
+                await TransactionRepository.InsertAsync(transaction);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

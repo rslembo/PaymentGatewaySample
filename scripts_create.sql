@@ -60,6 +60,43 @@ CREATE TABLE [Transaction] (
 	[CreatedDate] [datetime] NOT NULL DEFAULT GETDATE()
 );
 
+CREATE TABLE [Customer] (
+	[Id] [int] IDENTITY(1,1) PRIMARY KEY,
+	[Name] [varchar](150),
+	[Identity] [varchar](50),
+	[IdentityType] [varchar](50),
+	[Email] [varchar](50),
+	[BirthDate] [datetime],
+	[State] [varchar](2),
+	[TransactionId] [UNIQUEIDENTIFIER] NOT NULL FOREIGN KEY REFERENCES [Transaction](Id)
+);
+
+CREATE TABLE [BillingAddress] (
+	[Id] [int] IDENTITY(1,1) PRIMARY KEY,
+	[Street] [varchar](150),
+	[Number] [varchar](5),
+	[Complement] [varchar](100),
+	[ZipCode] [varchar](10),
+	[District] [varchar](100),
+	[City] [varchar](150),
+	[State] [varchar](2),
+	[Country] [varchar](150),
+	[CustomerId] [int] NOT NULL FOREIGN KEY REFERENCES [Customer](Id),
+);
+
+CREATE TABLE [ShippingAddress] (
+	[Id] [int] IDENTITY(1,1) PRIMARY KEY,
+	[Street] [varchar](150),
+	[Number] [varchar](5),
+	[Complement] [varchar](100),
+	[ZipCode] [varchar](10),
+	[District] [varchar](100),
+	[City] [varchar](150),
+	[State] [varchar](2),
+	[Country] [varchar](150),
+	[CustomerId] [int] NOT NULL FOREIGN KEY REFERENCES [Customer](Id),
+);
+
 CREATE TABLE [PaymentType] (
 	[Id] [int] IDENTITY(1,1) PRIMARY KEY,
 	[Name] [varchar](50) NOT NULL

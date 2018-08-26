@@ -16,6 +16,36 @@ namespace PaymentGatewaySample.Services.ExtensionMethods
                 RequestId = transactionDto.RequestId,
                 MerchantOrderId = transactionDto.MerchantOrderId,
                 Status = transactionDto.Status,
+                Customer = new Domain.Contracts.Models.Customer
+                {
+                    BirthDate = transactionDto.Customer.BirthDate,
+                    Email = transactionDto.Customer.Email,
+                    Identity = transactionDto.Customer.Identity,
+                    IdentityType = transactionDto.Customer.IdentityType,
+                    Name = transactionDto.Customer.Name,
+                    BillingAddress = new Domain.Contracts.Models.Address
+                    {
+                        City = transactionDto.Customer.BillingAddress.City,
+                        Complement = transactionDto.Customer.BillingAddress.Complement,
+                        Country = transactionDto.Customer.BillingAddress.Country,
+                        District = transactionDto.Customer.BillingAddress.District,
+                        Number = transactionDto.Customer.BillingAddress.Number,
+                        State = transactionDto.Customer.BillingAddress.State,
+                        Street = transactionDto.Customer.BillingAddress.Street,
+                        ZipCode = transactionDto.Customer.BillingAddress.ZipCode
+                    },
+                    ShippingAddress = new Domain.Contracts.Models.Address
+                    {
+                        City = transactionDto.Customer.ShippingAddress.City,
+                        Complement = transactionDto.Customer.ShippingAddress.Complement,
+                        Country = transactionDto.Customer.ShippingAddress.Country,
+                        District = transactionDto.Customer.ShippingAddress.District,
+                        Number = transactionDto.Customer.ShippingAddress.Number,
+                        State = transactionDto.Customer.ShippingAddress.State,
+                        Street = transactionDto.Customer.ShippingAddress.Street,
+                        ZipCode = transactionDto.Customer.ShippingAddress.ZipCode
+                    }
+                },
                 Payment = new Domain.Contracts.Models.Payment
                 {
                     Amount = transactionDto.Payment.Amount,
@@ -46,6 +76,36 @@ namespace PaymentGatewaySample.Services.ExtensionMethods
                 RequestId = transactionDto.RequestId,
                 MerchantOrderId = transactionDto.MerchantOrderId,
                 Status = transactionDto.Status,
+                Customer = new Domain.Entities.Customer
+                {
+                    BirthDate = transactionDto.Customer.BirthDate,
+                    Email = transactionDto.Customer.Email,
+                    Identity = transactionDto.Customer.Identity,
+                    IdentityType = transactionDto.Customer.IdentityType,
+                    Name = transactionDto.Customer.Name,
+                    BillingAddress = new Domain.Entities.BillingAddress
+                    {
+                        City = transactionDto.Customer.BillingAddress.City,
+                        Complement = transactionDto.Customer.BillingAddress.Complement,
+                        Country = transactionDto.Customer.BillingAddress.Country,
+                        District = transactionDto.Customer.BillingAddress.District,
+                        Number = transactionDto.Customer.BillingAddress.Number,
+                        State = transactionDto.Customer.BillingAddress.State,
+                        Street = transactionDto.Customer.BillingAddress.Street,
+                        ZipCode = transactionDto.Customer.BillingAddress.ZipCode
+                    },
+                    ShippingAddress = new Domain.Entities.ShippingAddress
+                    {
+                        City = transactionDto.Customer.ShippingAddress.City,
+                        Complement = transactionDto.Customer.ShippingAddress.Complement,
+                        Country = transactionDto.Customer.ShippingAddress.Country,
+                        District = transactionDto.Customer.ShippingAddress.District,
+                        Number = transactionDto.Customer.ShippingAddress.Number,
+                        State = transactionDto.Customer.ShippingAddress.State,
+                        Street = transactionDto.Customer.ShippingAddress.Street,
+                        ZipCode = transactionDto.Customer.ShippingAddress.ZipCode
+                    }
+                },
                 Payment = new Domain.Entities.Payment
                 {
                     Amount = transactionDto.Payment.Amount.Value,

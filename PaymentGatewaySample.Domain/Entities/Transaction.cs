@@ -9,6 +9,7 @@ namespace PaymentGatewaySample.Domain.Entities
         public Guid? RequestId { get; set; }
         public string MerchantOrderId { get; set; }
         public TransactionStatus Status { get; set; }
+        public virtual Customer Customer { get; set; }
         public virtual Payment Payment { get; set; }
         public virtual FraudAnalysis FraudAnalysis { get; set; }
 
