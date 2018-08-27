@@ -9,7 +9,7 @@ PaymentGatewaySample > PaymentGatewaySample:
 >dotnet build<br/> 
 dotnet run
 
-The application will start listening on `http://localhost:51425`
+The application will start listening on `http://localhost:51425`.<br/>
 To start testing the application, you should follow the steps below.
 
 ## Available Merchants
