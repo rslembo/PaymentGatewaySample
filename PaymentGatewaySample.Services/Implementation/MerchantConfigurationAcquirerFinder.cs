@@ -22,8 +22,8 @@ namespace PaymentGatewaySample.Services.Implementation
 
             var merchant = await MerchantFinder.FindByIdAsync(transactionDto.MerchantId.Value);
 
-            var acquirer = merchant.PaymentConfigurations.Where(x => x.Brand == paymentBrand).Select(x => x.Acquirer).Single();
-            return acquirer;
+            var acquirer = merchant?.PaymentConfigurations?.Where(x => x.Brand == paymentBrand)?.Select(x => x.Acquirer)?.FirstOrDefault();
+            return acquirer ?? Acquirer.Undefined;
         }
     }
 }

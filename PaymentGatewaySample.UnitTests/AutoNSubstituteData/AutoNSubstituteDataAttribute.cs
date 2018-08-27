@@ -11,17 +11,9 @@ namespace PaymentGatewaySample.UnitTests.AutoNSubstituteData
             : base(() => new Fixture()
                 .Customize(new AutoNSubstituteCustomization()))
         {
-            CreateOmitOnRecursionFixture();
-        }
-
-        public static Fixture CreateOmitOnRecursionFixture()
-        {
-            var fixture = new Fixture();
-            fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
-                             .ForEach(b => fixture.Behaviors.Remove(b));
-            fixture.Behaviors.Add(new OmitOnRecursionBehavior());
-
-            return fixture;
+            #pragma warning disable CS0618 // Type or member is obsolete
+            Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
+            #pragma warning restore CS0618 // Type or member is obsolete
         }
     }
 }

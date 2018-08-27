@@ -1,5 +1,4 @@
 ﻿using PaymentGatewaySample.Domain.Dtos;
-using PaymentGatewaySample.Domain.Entities;
 using PaymentGatewaySample.Domain.Services;
 using PaymentGatewaySample.Domain.Services.Factories;
 using PaymentGatewaySample.Services.ExtensionMethods;

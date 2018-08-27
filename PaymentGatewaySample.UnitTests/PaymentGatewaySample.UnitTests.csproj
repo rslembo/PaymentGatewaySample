@@ -9,8 +9,11 @@
   <ItemGroup>
     <PackageReference Include="AutoFixture" Version="4.5.0" />
     <PackageReference Include="AutoFixture.AutoNSubstitute" Version="4.5.0" />
+    <PackageReference Include="AutoFixture.Idioms" Version="4.5.0" />
     <PackageReference Include="AutoFixture.Xunit2" Version="4.5.0" />
+    <PackageReference Include="FluentAssertions" Version="5.4.1" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.7.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="NSubstitute" Version="3.1.0" />
     <PackageReference Include="xunit" Version="2.3.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.3.1" />
@@ -19,7 +22,11 @@
 
   <ItemGroup>
     <Folder Include="Controllers\" />
-    <Folder Include="Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PaymentGatewaySample.Integrations.Cielo\PaymentGatewaySample.Integrations.Cielo.csproj" />
+    <ProjectReference Include="..\PaymentGatewaySample.Services\PaymentGatewaySample.Services.csproj" />
   </ItemGroup>
 
 </Project>
