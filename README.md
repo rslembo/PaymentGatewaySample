@@ -6,7 +6,7 @@ Built using netcore 2.0 and Azure SQL Server database.
 ## Running the Application
 Clone or download this repository, and execute the following commands on the API folder.
 PaymentGatewaySample > PaymentGatewaySample:
->dotnet build<br/>dotnet run
+>dotnet build<br/> dotnet run
 
 The application will start listening on `http://localhost:51425`
 To start testing the application, you should follow the steps below.
@@ -15,9 +15,7 @@ To start testing the application, you should follow the steps below.
 
 ### ABC Store
 ##### Credentials
-> ID: 408E5197-D468-45A9-B0B2-B0B513481D3A
-> Key: 68257879AA3D8F70F2391AB9F0A5C94FF7AE7544
-> Antifraud Enabled: true
+> ID: 408E5197-D468-45A9-B0B2-B0B513481D3A<br/> Key: 68257879AA3D8F70F2391AB9F0A5C94FF7AE7544<br/> Antifraud Enabled: true
 ##### Payment Configurations
 | Card Brand | Acquirer |
 |--|--|
@@ -27,9 +25,7 @@ To start testing the application, you should follow the steps below.
 
 
 ### Store XPTO
-> ID: 881443DF-B87D-496F-A79A-A7D43A580BEE
-> Key: 1110448DBFC8F697B6FFB534A265178174888666
-> Antifraud Enabled: false
+> ID: 881443DF-B87D-496F-A79A-A7D43A580BEE<br/> Key: 1110448DBFC8F697B6FFB534A265178174888666<br/> Antifraud Enabled: false
 
 ##### Payment Configurations
 | Card Brand | Acquirer |
@@ -44,8 +40,7 @@ To start testing the application, you should follow the steps below.
 >POST http://localhost:51425/api/sale/
 
 #### Header
-> MerchantId
-> MerchantKey
+> MerchantId<br/> MerchantKey
 
 #### Body
 ##### Minimum Request
@@ -204,8 +199,7 @@ or
 >GET http://localhost:51425/api/sale/{id}
 
 #### Header
-> MerchantId
-> MerchantKey
+> MerchantId<br/> MerchantKey
 
 #### Response
 > Status: 401 - Unauthorized
@@ -287,8 +281,7 @@ or
 >GET http://localhost:51425/api/sale/
 
 #### Header
-> MerchantId
-> MerchantKey
+> MerchantId<br/> MerchantKey
 
 #### Response
 > Status: 401 - Unauthorized
