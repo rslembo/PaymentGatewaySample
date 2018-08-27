@@ -14,35 +14,35 @@ namespace PaymentGatewaySample.Services.ExtensionMethods
                 MerchantOrderId = saleRequest.MerchantOrderId,
                 Customer = new CustomerDto
                 {
-                    BirthDate = saleRequest.Customer.BirthDate,
-                    Email = saleRequest.Customer.Email,
-                    IpAddress = saleRequest.Customer.IpAddress,
-                    PhoneAreaCode = saleRequest.Customer.PhoneAreaCode,
-                    PhoneNumber = saleRequest.Customer.PhoneNumber,
-                    Identity = saleRequest.Customer.Identity,
-                    IdentityType = saleRequest.Customer.IdentityType,
-                    Name = saleRequest.Customer.Name,
+                    BirthDate = saleRequest.Customer?.BirthDate,
+                    Email = saleRequest.Customer?.Email,
+                    IpAddress = saleRequest.Customer?.IpAddress,
+                    PhoneAreaCode = saleRequest.Customer?.PhoneAreaCode,
+                    PhoneNumber = saleRequest.Customer?.PhoneNumber,
+                    Identity = saleRequest.Customer?.Identity,
+                    IdentityType = saleRequest.Customer?.IdentityType,
+                    Name = saleRequest.Customer?.Name,
                     BillingAddress = new BillingAddressDto
                     {
-                        City = saleRequest.Customer.BillingAddress.City,
-                        Complement = saleRequest.Customer.BillingAddress.Complement,
-                        Country = saleRequest.Customer.BillingAddress.Country,
-                        District = saleRequest.Customer.BillingAddress.District,
-                        Number = saleRequest.Customer.BillingAddress.Number,
-                        State = saleRequest.Customer.BillingAddress.State,
-                        Street = saleRequest.Customer.BillingAddress.Street,
-                        ZipCode = saleRequest.Customer.BillingAddress.ZipCode
+                        City = saleRequest.Customer?.BillingAddress?.City,
+                        Complement = saleRequest.Customer?.BillingAddress?.Complement,
+                        Country = saleRequest.Customer?.BillingAddress?.Country,
+                        District = saleRequest.Customer?.BillingAddress?.District,
+                        Number = saleRequest.Customer?.BillingAddress?.Number,
+                        State = saleRequest.Customer?.BillingAddress?.State,
+                        Street = saleRequest.Customer?.BillingAddress?.Street,
+                        ZipCode = saleRequest.Customer?.BillingAddress?.ZipCode
                     },
                     ShippingAddress = new ShippingAddressDto
                     {
-                        City = saleRequest.Customer.ShippingAddress.City,
-                        Complement = saleRequest.Customer.ShippingAddress.Complement,
-                        Country = saleRequest.Customer.ShippingAddress.Country,
-                        District = saleRequest.Customer.ShippingAddress.District,
-                        Number = saleRequest.Customer.ShippingAddress.Number,
-                        State = saleRequest.Customer.ShippingAddress.State,
-                        Street = saleRequest.Customer.ShippingAddress.Street,
-                        ZipCode = saleRequest.Customer.ShippingAddress.ZipCode
+                        City = saleRequest.Customer?.ShippingAddress?.City,
+                        Complement = saleRequest.Customer?.ShippingAddress?.Complement,
+                        Country = saleRequest.Customer?.ShippingAddress?.Country,
+                        District = saleRequest.Customer?.ShippingAddress?.District,
+                        Number = saleRequest.Customer?.ShippingAddress?.Number,
+                        State = saleRequest.Customer?.ShippingAddress?.State,
+                        Street = saleRequest.Customer?.ShippingAddress?.Street,
+                        ZipCode = saleRequest.Customer?.ShippingAddress?.ZipCode
                     }
                 },
                 Payment = new PaymentDto
