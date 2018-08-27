@@ -1,12 +1,13 @@
 # PaymentGatewaySample
 
-A payment Gateway sample.
+A payment Gateway sample.<br/> 
 Built using netcore 2.0 and Azure SQL Server database.
 
 ## Running the Application
 Clone or download this repository, and execute the following commands on the API folder.
 PaymentGatewaySample > PaymentGatewaySample:
->dotnet build<br/> dotnet run
+>dotnet build<br/> 
+dotnet run
 
 The application will start listening on `http://localhost:51425`
 To start testing the application, you should follow the steps below.
