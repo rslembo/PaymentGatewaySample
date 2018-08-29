@@ -1,7 +1,7 @@
 # PaymentGatewaySample
 
 A payment Gateway sample.<br/> 
-Built using netcore 2.0 and Azure SQL Server database.
+Built using netcore 2.1 and Azure SQL Server database.
 
 ## Running the Application
 Clone or download this repository, and execute the following commands on the API folder.<br/>
