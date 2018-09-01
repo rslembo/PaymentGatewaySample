@@ -33,7 +33,7 @@ namespace PaymentGatewaySample.Controllers
             var transactions = await TransactionFinder.FindAllByMerchantIdAsync(mid);
 
             if (transactions == null)
-                return NotFound();
+                return NoContent();
 
             transactions.Select(x => { x.Links = GetLinks(x.Id); return x; }).ToList();
             return Ok(transactions);
@@ -47,7 +47,7 @@ namespace PaymentGatewaySample.Controllers
             var transaction = await TransactionFinder.FindByIdAndMerchantIdAsync(id, mid);
 
             if (transaction == null)
-                return NotFound();
+                return NoContent();
 
             transaction.Links = GetLinks(transaction.Id);
             return Ok(transaction);
