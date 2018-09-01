@@ -213,7 +213,7 @@ MerchantKey
 
 or
 
-> Status: 404 - Not Found
+> Status: 204 - No Content
 
 or
 
@@ -296,7 +296,7 @@ MerchantKey
 
 or
 
-> Status: 404 - Not Found
+> Status: 204 - No Content
 
 or
 
